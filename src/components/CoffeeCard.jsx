@@ -10,7 +10,7 @@ function CoffeeCard({ coffee, handleDelete }) {
 	return (
 		<figure className="bg-new/70 p-8 grid grid-cols-[1fr_auto] lg:grid-cols-[auto_1fr_auto] items-center rounded-lg justify-items-center">
 			<img src={coffee.photo} alt={coffee.name} className="col-span-2 lg:col-span-1" />
-			<figcaption className="text-xl space-y-2 lg:ml-8 ml-6 md:m-0">
+			<figcaption className="text-xl space-y-2 ml-6 md:m-0">
 				<p>
 					<strong>Name:</strong> <span>{coffee.name}</span>
 				</p>
