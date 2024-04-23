@@ -6,7 +6,6 @@ import { useAuth } from "../context/AuthContext";
 function ProtectedRoute({ children }) {
 	const location = useLocation();
 	const { user } = useAuth();
-
 	return user ? children : <Navigate to="/login" state={location.pathname} />;
 }
 
