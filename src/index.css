@@ -12,4 +12,8 @@
 	.banner-height {
 		height: calc(100vh - 96px);
 	}
+
+	.label-icon {
+		@apply first:*:absolute first:*:bottom-3 first:*:left-3 relative;
+	}
 }

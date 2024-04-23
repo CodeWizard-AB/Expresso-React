@@ -1,11 +1,12 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-// import Swal from "sweetalert2";
+import { Toaster } from "react-hot-toast";
 
 function App() {
 	return (
 		<>
+			<Toaster position="top-left" />
 			<NavBar />
 			<Outlet />
 			<Footer />

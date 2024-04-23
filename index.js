@@ -28,27 +28,31 @@ async function run() {
 	try {
 		// Connect the client to the server	(optional starting in v4.7)
 		await client.connect();
-		const database = client.db("CoffeeDB").collection("CoffeeCollection");
+		const coffeeCollection = client
+			.db("CoffeeDB")
+			.collection("CoffeeCollection");
+		const userCollection = client.db("CoffeeDB").collection("UserCollection");
 
+		// * COFFEE RELATED API -
 		app.post("/coffees", async (req, res) => {
-			const result = await database.insertOne(req.body);
+			const result = await coffeeCollection.insertOne(req.body);
 			res.send(result);
 		});
 
 		app.get("/coffees", async (req, res) => {
-			const cursor = await database.find().toArray();
+			const cursor = await coffeeCollection.find().toArray();
 			res.send(cursor);
 		});
 
 		app.get("/coffees/:id", async (req, res) => {
 			const query = { _id: new ObjectId(req.params.id) };
-			const result = await database.findOne(query);
+			const result = await coffeeCollection.findOne(query);
 			res.send(result);
 		});
 
 		app.delete("/coffees/:id", async (req, res) => {
 			const query = { _id: new ObjectId(req.params.id) };
-			const result = await database.deleteOne(query);
+			const result = await coffeeCollection.deleteOne(query);
 			res.send(result);
 		});
 
@@ -58,7 +62,18 @@ async function run() {
 			const updated = {
 				$set: req.body,
 			};
-			const result = await database.updateOne(filter, updated, options);
+			const result = await coffeeCollection.updateOne(filter, updated, options);
+			res.send(result);
+		});
+
+		// * USER RELATED API -
+		app.post("/user", async (req, res) => {
+			const result = await userCollection.insertOne(req.body);
+			res.send(result);
+		});
+
+		app.get("/user", async (req, res) => {
+			const result = await userCollection.find().toArray();
 			res.send(result);
 		});
 
