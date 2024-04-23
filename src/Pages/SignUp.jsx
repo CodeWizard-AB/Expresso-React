@@ -39,21 +39,23 @@ function SignUp() {
 					abortEarly: false,
 				}
 			);
+			return true;
 		} catch (error) {
 			const errorObj = {};
 			error.inner.forEach((err) => {
 				errorObj[err.path] = err.message;
 			});
 			setError(errorObj);
+			return false;
 		}
 	};
 
 	console.log(user);
 
-	const handleSignup = function (e) {
+	const handleSignup = async function (e) {
 		e.preventDefault();
-		validation();
-		if (error === null && !user) {
+		const validated = await validation();
+		if (validated && !user) {
 			signUp(email, password);
 			setEmail("");
 			setPassword("");
@@ -78,6 +80,7 @@ function SignUp() {
 						<form onSubmit={handleSignup}>
 							<InputEmail
 								id="email"
+								value={email}
 								onChange={(e) => setEmail(e.target.value)}
 							/>
 							<ErrorMessage type="email" />
@@ -85,6 +88,7 @@ function SignUp() {
 							<InputPassword
 								id="password"
 								label="Password"
+								value={password}
 								onChange={(e) => setPassword(e.target.value)}
 							/>
 							<ErrorMessage error={error?.password} />
@@ -92,6 +96,7 @@ function SignUp() {
 							<InputPassword
 								id="confirm-password"
 								label="Confirm password"
+								value={confirmPassword}
 								onChange={(e) => setConfirmPassword(e.target.value)}
 							/>
 							<ErrorMessage error={error?.confirmPassword} />

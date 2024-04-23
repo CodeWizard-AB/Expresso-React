@@ -1,14 +1,20 @@
 import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import InputEmail from "../components/InputEmail";
 import InputPassword from "../components/InputPassword";
 
 function Login() {
-	const { logInWithMedia, logIn } = useAuth();
+	const { logInWithMedia, logIn, user } = useAuth();
 	const [email, setEmail] = useState();
 	const [password, setPassword] = useState();
+	const location = useLocation();
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (user) navigate(location.state);
+	}, [user, navigate, location.state]);
 
 	return (
 		<section className="dark:bg-gray-900 py-6">
