@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Rancho&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* html {
+	background-color: #d2b48c  #3c393b #ea4744;
+} */
+
+@layer utilities {
+	.banner-height {
+		height: calc(100vh - 96px);
+	}
+}
