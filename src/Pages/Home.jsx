@@ -4,6 +4,7 @@ import SectionTitle from "../components/SectionTitle";
 import CoffeeCard from "../components/CoffeeCard";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 function Home() {
 	const [coffees, setCoffees] = useState(useLoaderData());
@@ -18,9 +19,18 @@ function Home() {
 			confirmButtonText: "Yes, delete it!",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				fetch(`http://localhost:5000/coffees/${id}`, {
-					method: "DELETE",
-				}).then(() => {
+				// fetch(`http://localhost:5000/coffees/${id}`, {
+				// 	method: "DELETE",
+				// }).then(() => {
+				// 	setCoffees(coffees.filter((coffee) => coffee._id !== id));
+				// 	Swal.fire({
+				// 		title: "Deleted!",
+				// 		text: "Your coffee has been deleted.",
+				// 		icon: "success",
+				// 	});
+				// });
+
+				axios.delete(`http://localhost:5000/coffees/${id}`).then(() => {
 					setCoffees(coffees.filter((coffee) => coffee._id !== id));
 					Swal.fire({
 						title: "Deleted!",

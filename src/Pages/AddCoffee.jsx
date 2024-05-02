@@ -2,6 +2,7 @@ import Label from "../components/Label";
 import BackHome from "../components/BackHome";
 import { coffee_details } from "../constant";
 import Swal from "sweetalert2";
+// import axios from "axios";
 
 function AddCoffee() {
 	const handleAddCoffee = function (e) {
@@ -24,6 +25,8 @@ function AddCoffee() {
 				timer: 1500,
 			});
 		});
+
+		// axios.post()
 	};
 
 	return (
